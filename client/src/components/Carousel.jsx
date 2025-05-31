@@ -1,4 +1,5 @@
 import Card from "./Card";
+import React from "react";
 import "../global.css"
 
 /**
@@ -20,4 +21,4 @@ function Carousel({label, items, type}) {
     )
 }
 
-export default Carousel
+export default React.memo(Carousel)

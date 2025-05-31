@@ -15,17 +15,13 @@ import "../global.css"
  * - Outside click detection to auto-close dropdowns
  */
 function Navbar() {
+    const navigate = useNavigate();
+    
     // === Responsive dropdown menu logic ===
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchActive, setSearchActive] = useState(false);
-    
     const dropDownRef = useRef(null);
-    const toggleRef= useRef(null);
-    const inputRef = useRef(null);
-    const inputMobileRef = useRef(null);
-    const searchButtonRef = useRef(null);
-    const searchButtonMobileRef = useRef(null);
-    const navigate = useNavigate();
+    const toggleRef= useRef(null); 
 
     useEffect(() => {
         if (!menuOpen) return;
@@ -43,21 +39,35 @@ function Navbar() {
         };
     },[menuOpen]);
 
+
+    // === Search logic ===
+    const inputRef = useRef(null);
+    const inputMobileRef = useRef(null);
+    const searchButtonRef = useRef(null);
+    const searchButtonMobileRef = useRef(null);
+
     const handleSearch = (event) => {
+        // 
         if (inputRef.current.contains(event.target) && event.key !== "Enter" || inputMobileRef.current.contains(event.target) && event.key !== "Enter") {
             inputRef.current.value?.trim() ? inputMobileRef.current.value = event.target.value : "";
             inputMobileRef.current.value?.trim() ? inputRef.current.value = event.target.value : "";
         }
+        //
         if (inputRef.current.contains(event.target) && event.key === "Enter" || inputMobileRef.current.contains(event.target) && event.key === "Enter") {
             const query = event.target.value.trim();
             console.log(query);
             event.target.value = "";
+            if (searchActive) { setSearchActive(!searchActive) };
+            navigate(`/search/${query}`);
         }
+        //
         if (searchButtonRef.current.contains(event.target) || searchButtonMobileRef.current.contains(event.target)) {
             const query = inputRef.current.value?.trim() || inputMobileRef.current.value?.trim();
             console.log(query);
             inputRef.current.value = "";
             inputMobileRef.current.value = "";
+            if (searchActive) { setSearchActive(!searchActive) };
+            navigate(`/search/${query}`);
         }
     }
 
@@ -120,7 +130,7 @@ function Navbar() {
             {/* === Mobile Dropdown Links === */}
             <div 
              ref={dropDownRef} 
-             className={`md:hidden relative z-10 font-medium top-0 flex flex-col items-center w-full left-0 pt-2 bg-[var(--primary-color)] transform transition-transform duration-300 origin-top ${menuOpen ? "scale-y-100" : "scale-y-0"} shadow-xl shadow-[#222231]/50`}>
+             className={`md:hidden relative z-10 font-medium top-[-1px] flex flex-col items-center w-full left-0 pt-2 bg-[var(--primary-color)] transform transition-transform duration-300 origin-top ${menuOpen ? "scale-y-100" : "scale-y-0"} shadow-xl shadow-[#222231]/50`}>
                 <Link onClick={() => setMenuOpen(!menuOpen)} className={`py-2 transition-opacity duration-150 ${menuOpen ? "opacity-100" : "opacity-0"} hover:bg-[var(--secondary-color)] w-full text-center`} to="/shows">Shows</Link>
                 <Link onClick={() => setMenuOpen(!menuOpen)} className={`py-2 transition-opacity duration-150 ${menuOpen ? "opacity-100" : "opacity-0"} hover:bg-[var(--secondary-color)] w-full text-center`} to="/movies">Movies</Link>
                 <Link onClick={() => setMenuOpen(!menuOpen)} className={`py-2 transition-opacity duration-150 ${menuOpen ? "opacity-100" : "opacity-0"} hover:bg-[var(--secondary-color)] w-full text-center`} to="/favorites">Favorites</Link>

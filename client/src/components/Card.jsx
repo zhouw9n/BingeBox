@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { addToFavorites, isFavorites, removeFromFavorites } from "../services/favorites";
+import React from "react";
 import "../global.css"
 
 /**
@@ -72,7 +73,10 @@ function Card({item, type, onFavoriteRemoved}) {
                 <img 
                 src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}  
                 alt="Image" 
-                className="rounded-t-[15px]"/>
+                className="rounded-t-[15px]"
+                loading="lazy"
+                />
+                
             </div>
 
             {/* === Titel, Release Year and PG  === */}
@@ -89,4 +93,4 @@ function Card({item, type, onFavoriteRemoved}) {
     )
 }
 
-export default Card
+export default React.memo(Card)

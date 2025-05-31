@@ -5,6 +5,7 @@ import Shows from "./pages/Shows";
 import Favorites from "./pages/Favorites";
 import Details from "./pages/Details";
 import NotFound from "./pages/NotFound";
+import SearchResults from "./pages/SearchResults";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/shows" element={<Shows />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/:category/:id" element={<Details />} />
+            <Route path="/search/:query" element={<SearchResults />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

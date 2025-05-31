@@ -35,7 +35,12 @@ function Header({details, category, id}) {
     return (
         <div className="inset-shadow-[#101018] inset-shadow-sm flex xs:flex-row flex-col justify-center items-center sm:gap-5 md:gap-12 bg-[var(--secondary-color)] shrink-0">
             {/* === Poster === */}
-            <img src={`https://image.tmdb.org/t/p/w500/${details.posterUrl}`} alt="Image" className="w-[300px] sm:w-[336px] lg:w-[500px] h-auto"/>
+            <img 
+                src={`https://image.tmdb.org/t/p/w500/${details.posterUrl}`} 
+                alt="Image" 
+                className="w-[300px] sm:w-[336px] lg:w-[500px] h-auto"
+                loading="lazy"
+                />
             
             {/* === Info === */}
             <div className="flex flex-col md:justify-between py-4 w-[300px] sm:w-[336px] lg:w-[500px]">

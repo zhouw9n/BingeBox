@@ -47,7 +47,8 @@ export const formatDetails = (details) => {
     const castList = findActors(cast);
     const directorsList = findDirectors(crew);
 
-    const creators = details.created_by?.map(creator => creator.name) || ["N/A"];
+    const creatorsNames = details.created_by?.map(creator => creator.name) || [];
+    const creators = creatorsNames.length > 0 ? creatorsNames : ["N/A"];
 
     const recommendations = details.recommendations.results;
 

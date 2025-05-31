@@ -30,7 +30,7 @@ function Details() {
     if (isLoading) {
         return <></>
     }
-
+    
     return (
         <div className="md:py-[1rem]">
             <Header details={details} category={category} id={id}/>

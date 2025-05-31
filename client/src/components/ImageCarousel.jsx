@@ -20,6 +20,7 @@ function ImageCarousel({details}) {
                         key={url} 
                         src={`https://image.tmdb.org/t/p/w500/${url}`}
                         className="w-[300px] h-auto object-fill"
+                        loading="lazy"
                         />
                     ))}
                 </div>
