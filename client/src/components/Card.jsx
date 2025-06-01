@@ -36,7 +36,7 @@ function Card({item, type, onFavoriteRemoved}) {
             onFavoriteRemoved?.();
         } else {
             setFavorites(true);
-            addToFavorites(item.id.toString(), category);
+            addToFavorites(item.id.toString(), category, item.overview);
         }
     }
 

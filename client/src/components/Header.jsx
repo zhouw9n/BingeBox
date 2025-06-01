@@ -28,7 +28,7 @@ function Header({details, category, id}) {
             removeFromFavorites(id.toString(), category);
         } else {
             setFavorites(true);
-            addToFavorites(id.toString(), category);
+            addToFavorites(id.toString(), category, details.overview);
         }
     }
 

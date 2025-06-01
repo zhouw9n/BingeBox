@@ -35,13 +35,14 @@ export const isFavorites = (id, category) => {
  * 
  * @param {string} id - The ID of the movie or show.
  * @param {string} category - The category, either "movie" or "tv".
+ * @param {string} description - The description provided by TMDB API.
  */
-export const addToFavorites = (id, category) => {
+export const addToFavorites = (id, category, description) => {
     const favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
     const alreadyExists = favorites?.some(item => item.id.toString() === id.toString() && item.category === category);
     if (alreadyExists) return;
 
-    const addToFavorites = { id, category};
+    const addToFavorites = { id, category, description};
     const updatedFavorites = [...favorites, addToFavorites];
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(updatedFavorites));
 }

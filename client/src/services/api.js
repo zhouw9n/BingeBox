@@ -113,3 +113,42 @@ export const getSearchResults = async (query) => {
     return null;
   }
 }
+
+
+
+
+export const getAverageVectors = async (descriptions) => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/embed`, {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ texts: descriptions}),
+    });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log("Error fetching average vectors: ", error);
+  }
+}
+
+
+export const getRecommendations = async (averageVectors) => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/datastrax/db/movie`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ vector: averageVectors}),
+    });
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.log("Error fetching recommendations from Datastrax DB: ", error)
+  }
+} 
