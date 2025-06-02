@@ -1,3 +1,4 @@
+
 /**
  * LocalStorage API Services for managing user's favorite movies and shows.
  * Each favorite is stored with an `id` and `category` 
@@ -44,6 +45,7 @@ export const addToFavorites = (id, category, description) => {
 
     const addToFavorites = { id, category, description};
     const updatedFavorites = [...favorites, addToFavorites];
+    
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(updatedFavorites));
 }
 

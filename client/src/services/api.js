@@ -2,6 +2,8 @@
  * API Services handles all HTTP request to the backend via Render. 
  */
 
+import { addToFavorites } from "./favorites";
+
 const BASE_URL = "https://bingebox-nzb9.onrender.com";
 
 
@@ -117,22 +119,7 @@ export const getSearchResults = async (query) => {
 
 
 
-export const getAverageVectors = async (descriptions) => {
-  try {
-    const response = await fetch(`${BASE_URL}/api/embed`, {
-      method: "POST",
-      headers: { 
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ texts: descriptions}),
-    });
 
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log("Error fetching average vectors: ", error);
-  }
-}
 
 
 export const getRecommendations = async (averageVectors) => {
