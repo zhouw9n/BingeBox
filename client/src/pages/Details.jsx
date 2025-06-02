@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { getDetails } from "../services/api";
-import { formatDetails } from "../utils/format";
+import { formatDetails } from "../utils/formatData";
 import Header from "../components/Header";
 import DetailsSection from "../components/DetailsSection";
 import ImageCarousel from "../components/ImageCarousel";

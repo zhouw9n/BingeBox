@@ -117,27 +117,32 @@ const client = new DataAPIClient();
 const database = client.db(process.env.DATASTRAX_API_ENDPOINT, {
     token: process.env.DATASTRAX_APPLICATION_TOKEN,
 });
-const collection = database.collection("movie");
-const favorites = database.collection("favorites");
+const collection = database.collection("library");
 
-app.post("/api/datastrax/db/movie", async (req, res) => {
-    const averageVector = req.body.vector;
+app.post("/api/datastrax", async (req, res) => {
+    const query = req.body.expression;
 
-    if (!averageVector || !Array.isArray(averageVector) || averageVector.length === 0) {
-        return res.status(400).json({error: "Provide a vector sample."});
+    if (!query || typeof query !== "string") {
+        return res.status(400).json({error: "Query provided is not a string."});
     }
 
     try {
-        const cursor = collection.find(
+        const cursor = await collection.find(
             {},
             {
-               vector: averageVector,
-               limit: 20,
-               projection: { $vector: 0 },
-            }
+                sort: { $vectorize: query },
+                limit: 50,
+                includeSimilarity: true,
+                projection: { _id: 0 },
+            }   
         );
-        const response = await cursor.toArray();
-        res.json(response);
+
+        const data = [];
+        for await (const doc of cursor) {
+            data.push(doc);
+        }
+        
+        res.json(data)
     } catch (error) {
         res.status(500).json({error: error.message});
     }

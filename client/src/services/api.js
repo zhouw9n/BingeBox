@@ -122,20 +122,20 @@ export const getSearchResults = async (query) => {
 
 
 
-export const getRecommendations = async (averageVectors) => {
+export const getUserRecommendation = async (query) => {
   try {
-    const response = await fetch(`${BASE_URL}/api/datastrax/db/movie`, {
+    const response = await fetch(`${BASE_URL}/api/datastrax`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ vector: averageVectors}),
+      body: JSON.stringify({ expression: query}),
     });
 
     const data = await response.json();
     return data;
 
   } catch (error) {
-    console.log("Error fetching recommendations from Datastrax DB: ", error)
+    console.log("Error couldn't get similarity sample from Datastrax DB: ", error)
   }
 } 
