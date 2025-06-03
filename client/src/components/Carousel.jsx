@@ -5,7 +5,12 @@ import "../global.css"
 /**
  * Carousel Component
  * 
- * Displays movies/shows in a carousel layout.
+ * Displays movies and shows in a carousel layout.
+ * 
+ * Props:
+ * - label: Sets the titel of the carousel (i.e.: Upcoming Movie, Trending).
+ * - items: An object formatted data handed over to the Card component for rendering purposes.
+ * - type Either "movie" or "tv" show handed over to the Card component for 
  *  
  */
 function Carousel({label, items, type}) {

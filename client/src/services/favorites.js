@@ -1,10 +1,8 @@
-
 /**
  * LocalStorage API Services for managing user's favorite movies and shows.
  * Each favorite is stored with an `id` and `category` 
  * (i.e.: { id: "123", category: "movie" }).
  */
-
 
 const FAVORITES_KEY = "favorites";
 

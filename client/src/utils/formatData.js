@@ -19,7 +19,7 @@ export const formatDetails = (details) => {
     const rating = details.vote_average.toFixed(1);
 
     const releaseDateIsoFormat = details.release_date || details.first_air_date;
-    const releaseYear = releaseDateIsoFormat.split("-")[0];
+    const releaseYear = releaseDateIsoFormat ? releaseDateIsoFormat.split("-")[0] : "N/A";
     const releaseDateGlobalFormat = convertDateToGlobalFormat(releaseDateIsoFormat);
 
     const genres = details.genres;
@@ -147,6 +147,9 @@ function convertLanguageCode(languageCode) {
  */
 function convertDateToGlobalFormat(releaseDateIsoFormat) {
     const globalFormat = new Intl.DateTimeFormat("en-GB");
+    if (!releaseDateIsoFormat) {
+        return "N/A";
+    }
     return globalFormat.format(new Date(releaseDateIsoFormat));
 }
 

@@ -2,8 +2,6 @@
  * API Services handles all HTTP request to the backend via Render. 
  */
 
-import { addToFavorites } from "./favorites";
-
 const BASE_URL = "https://bingebox-nzb9.onrender.com";
 
 
@@ -47,7 +45,6 @@ export const getUpcomingMoviesList = async () => {
  * @returns {Promies<Object>} - Object with details of movie or tv show, or null on failure.
  */
 export const getDetails = async (category, id) => {
-  
     try {
     if (category === "movie") {
       const response = await fetch(`${BASE_URL}/api/movie/details?id=${id}`);
@@ -116,12 +113,12 @@ export const getSearchResults = async (query) => {
   }
 }
 
-
-
-
-
-
-
+/**
+ * Fetches personalized user recommendation based on user's favorites..
+ * 
+ * @param {string} query - query which represents a sample for the vector search.
+ * @returns {Promise<Array>} - Array of movies or shows ranked based on vector search.
+ */
 export const getUserRecommendation = async (query) => {
   try {
     const response = await fetch(`${BASE_URL}/api/datastrax`, {

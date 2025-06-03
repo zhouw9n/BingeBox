@@ -4,11 +4,21 @@ import { getMoviesByGenre } from "../services/api";
 import { clearSearchInput } from "../utils/clearSearchInput";
 import Carousel from "../components/Carousel"
 
-
+/**
+ * Movies Page
+ * 
+ * Handles:
+ * - Fetches and displays a preview of movies in different genres.
+ * 
+ * Components Rendered:
+ * - Carousel: A carousel for each fetched genre.
+ * 
+ */
 function Movies() {
+    // Setting state.
     const [genreMovies, setGenreMovies] = useState({});
 
-
+    // Handles fetching movies from each genre.
     useEffect(() => {
         const fetchAllGenres = async () => {
             const promises = GENRE_MAP_MOVIES.map(async (genre) => {

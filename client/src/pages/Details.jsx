@@ -9,11 +9,27 @@ import Carousel from "../components/Carousel";
 import { clearSearchInput } from "../utils/clearSearchInput";
 
 
-
+/**
+ * Details Page
+ * 
+ * Handles:
+ * - Fetches and displays detailed information aboout a movie or show
+ * 
+ * Components Rendered:
+ * - Header: Poster with main title and preview area.
+ * - DetailsSection: Metadata and other relevant information.
+ * - ImageCarousel: A preview of images.
+ * - Carousel: Recommend similar titles base on this movie/show the user is looking at.
+ * 
+ */
 function Details() {
+    // Extract category and id from route parameters to fetch details.
     const {category, id} = useParams();
+
+    // Setting state.
     const [details, setDetails] = useState([]);
     
+    // Handles fetchig details about the movie or show.
     useEffect(() => {
         const fetchDetails = async() => {
             const response = await getDetails(category, id);
@@ -34,9 +50,16 @@ function Details() {
     return (
         <div className="md:py-[1rem]">
             <Header details={details} category={category} id={id}/>
+
             <DetailsSection details={details} category={category}/>
-            <ImageCarousel details={details}/>
-            <Carousel label="Similar Titels" items={details.recommendations}/> 
+            { details.imageUrlPaths && details.imageUrlPaths.length > 0 && (
+                <ImageCarousel details={details}/>
+            )}
+
+            { details.recommendations && details.recommendations.length > 0 && (
+                <Carousel label="Similar Titels" items={details.recommendations}/>
+            )}
+             
         </div>
     )
 }

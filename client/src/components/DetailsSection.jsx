@@ -1,5 +1,13 @@
 
-
+/**
+ * Details Section Component
+ * 
+ * Displays structured information about a movie or show.
+ * 
+ * Props:
+ * - details: An object containing formatted data (i.e.: duration, release date, genres, cast).
+ * - category: Either "movie" or "tv" to conditionally render category-specific info.
+ */
 function DetailsSection({details,category}) {
     return (
         <>

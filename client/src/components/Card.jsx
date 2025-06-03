@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { addToFavorites, isFavorites, removeFromFavorites } from "../services/favorites";
 import React from "react";
+import noPreviewImage from "../assets/images/noPreviewImage.svg";
 import "../global.css"
 
 /**
@@ -11,19 +12,20 @@ import "../global.css"
  * 
  * Handles;
  * - Routing to movie/show details page.
- * - Add movie/show to favorites
+ * - Add movie/show to favorites.
  *  
  */
 function Card({item, type, onFavoriteRemoved}) {
-    // Release year can be under release_date (movies) or first_air_date (tv shows)
-    const year = item.release_date || item.first_air_date
+    // Release year can be under release_date (movies) or first_air_date (tv shows).
+    const year = item.release_date || item.first_air_date || "N/A"
     // Determine media category:
-    // Use media_type from API if provided, otherwise fall back to the provided prop
+    // Use media_type from API if provided, otherwise fall back to the provided prop.
     const category = item.media_type ? item.media_type : type;
 
+    // Setting states.
     const [favorites, setFavorites] = useState(false);
-    
-    
+
+    // Handles add to or remove from favorites.
     useEffect(() => {
         const isFavoritesValue = isFavorites(item.id, category);
         setFavorites(isFavoritesValue);
@@ -40,15 +42,15 @@ function Card({item, type, onFavoriteRemoved}) {
         }
     }
 
-    // Handles router navigation or add movie/show to favorites
+    // Handles router navigation or add movie/show to favorites.
     const navigate = useNavigate();
     function handleClick(event) {
         if (event.target.closest("[data-button-favorites]")) {
             handleFavorite();
             return;
         }
-        // Add category "movie" or "tv" and ID to the URL, then navigate to the details page
-        // e.g., /movie/12345 or /tv/12345
+        // Add category "movie" or "tv" and ID to the URL, then navigate to the details page.
+        // (i.e.: /movie/12345 or /tv/12345)
         navigate(`/${category}/${item.id}`); 
     }
 
@@ -71,8 +73,10 @@ function Card({item, type, onFavoriteRemoved}) {
             {/* === Poster === */}
             <div className="flex w-[220px] h-[330px]">
                 <img 
-                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}  
-                alt="Image" 
+                src={item.poster_path
+                    ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
+                    : noPreviewImage}  
+                
                 className="rounded-t-[15px]"
                 loading="lazy"
                 />

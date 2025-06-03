@@ -2,8 +2,10 @@
 /**
  * Image Carousel Component
  * 
- * Displays images from the movie/show
- *  
+ * Displays images from the movie/show.
+ * 
+ * Props:
+ * - details: An object containing image url paths to render image carousel. 
  */
 function ImageCarousel({details}) {
     return (

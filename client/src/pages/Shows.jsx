@@ -4,10 +4,21 @@ import { getShowsByGenre } from "../services/api";
 import { clearSearchInput } from "../utils/clearSearchInput";
 import Carousel from "../components/Carousel"
 
-
+/**
+ * Shows Page
+ * 
+ * Handles:
+ * - Fetches and displays a preview of shows in different genres.
+ * 
+ * Components Rendered:
+ * - Carousel: A carousel for each fetched genre.
+ * 
+ */
 function Shows() {
+    // Setting state.
     const [genreShows, setGenreShows] = useState({});
 
+    // Handles fetching shows from each genre.
     useEffect(() => {
         const fetchAllGenres = async () => {
             const promises = GENRE_MAP_SHOWS.map(async (genre) => {

@@ -10,9 +10,9 @@ import "../global.css"
  * search toggle for mobile devices.
  * 
  * Handles:
- * - Mobile dropdown menu
- * - Search bar toggle (for mobile)
- * - Outside click detection to auto-close dropdowns
+ * - Mobile dropdown menu.
+ * - Search bar toggle (for mobile).
+ * - Outside click detection to auto-close dropdowns.
  */
 function Navbar() {
     const navigate = useNavigate();
@@ -77,11 +77,11 @@ function Navbar() {
                 {/* === Logo === */}
                 <div 
                  onClick={() => navigate("/")} 
-                 className="flex gap-2 order-2 md:order-1 cursor-pointer select-none">
-                    <div className="w-[16px] md:w-[24px]">
-                        <i className="md:text-2xl bi bi-film"></i>
+                 className="flex gap-2 order-2 md:order-1 cursor-pointer select-none item-center">
+                    <div className="size-[20px] md:size-[24px]">
+                        <i className="text-[20px] md:text-2xl bi bi-film"></i>
                     </div>
-                    <h4 className="font-medium md:text-2xl">BingeBox</h4>
+                    <h4 className="font-medium text-[20px] md:text-2xl">BingeBox</h4>
                 </div>
 
                 {/* === Desktop Navigation Links === */}
@@ -113,9 +113,9 @@ function Navbar() {
                 {/* === Mobile Menu Toggle Icon === */}
                 <div 
                  ref={toggleRef} onClick={() => setMenuOpen(!menuOpen)} 
-                 className="md:hidden flex justify-center items-center order-1 w-[20px] h-[20px] cursor-pointer"
+                 className="md:hidden flex justify-center items-center order-1 size-[20px] cursor-pointer"
                  >
-                    <i className={` ${menuOpen ? "bi bi-x-lg text-[1rem]" : "bi bi-list text-[1.25rem]"}`}></i>
+                    <i className={` ${menuOpen ? "bi bi-x-lg text-[20px]" : "bi bi-list text-[24px]"}`}></i>
                 </div>
 
                 {/* === Mobile Search Icon === */}
@@ -123,7 +123,7 @@ function Navbar() {
                  onClick={() => setSearchActive(!searchActive)} 
                  className="md:hidden order-3 cursor-pointer"
                  >
-                    <i className="bi bi-search"></i>
+                    <i className="text-[20px] bi bi-search"></i>
                 </div>
             </div>
 

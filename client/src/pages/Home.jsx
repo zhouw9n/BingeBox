@@ -6,17 +6,27 @@ import { buildSample } from "../utils/buildSample";
 import Carousel from "../components/Carousel";
 import React from "react";
 
-
+/**
+ * Home Page
+ * 
+ * Handles:
+ * - Fetches movies and shows which are currently trending this week.
+ * - Fetches upcoming movies.
+ * - Fetches personalized user recommendations via vector search from a database based on user's favorites.
+ * 
+ * Components Rendered:
+ * - Carousel: A carousel displaying personalized recoomendations, currently trending and upcoming movies.
+ */
 function Home() {
-
+    // Settign states.
     const [trendingList, setTrendingList] = useState([]);
     const [upcomingMoviesList, setUpcomingMoviesList] = useState([]);
     const [userRecommendations, setUserRecommendations] = useState([]);
-
     const [isTrendingLoading, setTrendingLoading] = useState(true);
     const [isUpcomingLoading, setUpcomingLoading] = useState(true);
     const [isRecsLoading, setRecsLoading] =  useState(true);
 
+    // Handles fetching trending, upcoming movies and user recommendations
     useEffect(() => {
 
         const fetchTrending = async () => {
@@ -80,11 +90,6 @@ function Home() {
         fetchTrending();
         fetchUpcomingMoviesList();
     }, []);
-
-    useEffect(() => {
-        console.log(userRecommendations);
-    },[userRecommendations]);
-
     
     if (isTrendingLoading || isUpcomingLoading || isRecsLoading) {
         return <></>
