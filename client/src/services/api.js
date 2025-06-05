@@ -11,13 +11,13 @@ const BASE_URL = "https://bingebox-nzb9.onrender.com";
  * @returns {Promise<Array>} - Trending content or empty array on failure.
  */
 export const getTrendingList = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/api/trending/all`);
-    const data = await response.json();
-    return data.results;
-  } catch (error) {
-    console.log("Failed to get trending." ,error);
+  const response = await fetch(`${BASE_URL}/api/trending/all`);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw { status: response.status, message: data.error || "Failed to get trending movies and shows."};
   }
+  return data.results;
 }
 
 /**
@@ -26,13 +26,13 @@ export const getTrendingList = async () => {
  * @returns {Promise<Array>} - Upcoming movies or empty array on failure.
  */
 export const getUpcomingMoviesList = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/api/movie/upcoming`);
-    const data = await response.json();
-    return data.results;
-  } catch (error) {
-    console.log("Failed to get upcoming movies." ,error);
+  const response = await fetch(`${BASE_URL}/api/movie/upcoming`);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw { status: response.status, message: data.error || "Failed to get upcoming movies."};
   }
+  return data.results;
 }
 
 /**
@@ -45,23 +45,25 @@ export const getUpcomingMoviesList = async () => {
  * @returns {Promies<Object>} - Object with details of movie or tv show, or null on failure.
  */
 export const getDetails = async (category, id) => {
-    try {
     if (category === "movie") {
       const response = await fetch(`${BASE_URL}/api/movie/details?id=${id}`);
       const data = await response.json();
+
+      if (!response.ok) {
+        throw { status: response.status, message: data.response || `Failed to get details of movie with id ${id}.`};
+      }
       return data;
     } else if (category === "tv") {
       const response = await fetch(`${BASE_URL}/api/tv/details?id=${id}`);
       const data = await response.json();
+
+      if (!response.ok) {
+        throw { status: response.status, message: data.error || `Failed to get details of show with id ${id}.`};
+      }
       return data;
     } else {
-      console.log(`Invalid category: ${category}`);
-      return null;
+      throw { status: 400, message: `Invalide category: ${category}. Must be "movie" or "tv".`};
     }
-  } catch (error) {
-    console.log(`Failed to get details of ${id}`, error);
-    return null;
-  }
 }
 
 /**
@@ -71,13 +73,14 @@ export const getDetails = async (category, id) => {
  * @returns {Promise<Array>} - Array of movies from a genre or empty array on failure.
  */
 export const getMoviesByGenre = async (id) => {
-  try {
     const response = await fetch(`${BASE_URL}/api/movie/genre?id=${id}`);
     const data = await response.json();
+
+    if (!response.ok) {
+      throw { status: response.status, message: data.error || `Failed to get movies with genre id ${id}.`};
+    }
+
     return data;
-  } catch (error) {
-    console.log("Failed to get movies by genre.", error);
-  }
 }
 
 /**
@@ -86,14 +89,15 @@ export const getMoviesByGenre = async (id) => {
  * @param {string} id - TMDB genre ID. 
  * @returns {Promise<Array>} - Array of shows from a genre or empty array on failure.
  */
-export const getShowsByGenre = async (id) => {
-  try {
-    const response = await fetch(`${BASE_URL}/api/tv/genre?id=${id}`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log("Failed to get shows by genre.", error);
+export const getShowsByGenre = async (id) => {  
+  const response = await fetch(`${BASE_URL}/api/tv/genre?id=${id}`);
+  const data = await response.json();
+  
+  if (!response.ok) {
+    throw { status: response.status, message: data.error || `Failed to get shows with genre id ${id}.`};
   }
+
+  return data;
 }
 
 /**
@@ -103,14 +107,14 @@ export const getShowsByGenre = async (id) => {
  * @returns {Promise<Array>} - Array of movies or shows matching the query or empty array on failure.
  */
 export const getSearchResults = async (query) => {
-  try {
-    const response = await fetch(`${BASE_URL}/api/search?query=${query}`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log("Failed to get search resutls.", error);
-    return null;
+  const response = await fetch(`${BASE_URL}/api/search?query=${query}`);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw { status: response.status, message: data.error || "Failed to get search results."};
   }
+
+  return data; 
 }
 
 /**
@@ -120,19 +124,18 @@ export const getSearchResults = async (query) => {
  * @returns {Promise<Array>} - Array of movies or shows ranked based on vector search.
  */
 export const getUserRecommendation = async (query) => {
-  try {
-    const response = await fetch(`${BASE_URL}/api/datastrax`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ expression: query}),
-    });
+  const response = await fetch(`${BASE_URL}/api/datastrax`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ expression: query}),
+  });
 
-    const data = await response.json();
-    return data;
-
-  } catch (error) {
-    console.log("Error couldn't get similarity sample from Datastrax DB: ", error)
+  if (!response.ok) {
+    throw { status: response.status, message: data.error || "Failed to get user recommendation."};
   }
+
+  const data = await response.json();
+  return data;
 } 

@@ -9,7 +9,7 @@
  */
 function ImageCarousel({details}) {
     return (
-        <section className="flex justify-center">
+        <section className="flex justify-center [animation:var(--animate-ease-to)]">
             <div className="flex flex-col justify-center pt-16 w-[300px] xs:w-[692px] sm:w-[336px] md:w-[720px] lg:w-[1020px]">
                 
                 <div className="flex justify-center w-full">

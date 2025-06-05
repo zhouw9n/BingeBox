@@ -3,6 +3,8 @@ import { GENRE_MAP_MOVIES } from "../constants/genreMap";
 import { getMoviesByGenre } from "../services/api";
 import { clearSearchInput } from "../utils/clearSearchInput";
 import Carousel from "../components/Carousel"
+import Loader from "../components/Loader";
+import ErrorMessage from "../components/ErrorMessage";
 
 /**
  * Movies Page
@@ -15,8 +17,12 @@ import Carousel from "../components/Carousel"
  * 
  */
 function Movies() {
+    window.scrollTo(0, 0);
     // Setting state.
     const [genreMovies, setGenreMovies] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
+    const [errorCode, setErrorCode] = useState(null);
 
     // Handles fetching movies from each genre.
     useEffect(() => {
@@ -26,18 +32,27 @@ function Movies() {
                     const movies = await getMoviesByGenre(genre.id);
                     return { [genre.name]: movies.results };
                 } catch (error) {
-                    console.log(`Failed to fetch ${genre.name}:`, error);
+                    console.log(error.status, error.message);
+                    setErrorCode(error.status);
+                    setIsError(true);
                 }
             });
 
             const results = await Promise.all(promises);
             const combined = Object.assign({}, ...results);
             setGenreMovies(combined);
+            setIsLoading(false);
         };
 
         clearSearchInput();
         fetchAllGenres();
     }, []);
+
+    // Renders error message.
+    if (isError) return <ErrorMessage code={errorCode}/>
+
+    // Renders loading animation.
+    if (isLoading) return <Loader message="Loading movies"/>
 
     return (
         <>

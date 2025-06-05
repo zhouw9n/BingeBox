@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getSearchResults } from "../services/api";
 import Card from "../components/Card";
+import Loader from "../components/Loader";
+import ErrorMessage from "../components/ErrorMessage";
 
 /**
  * Search Results Page
@@ -15,19 +17,32 @@ import Card from "../components/Card";
  * - Card: A card of each movie or show in a grid layout.
  */
 function SearchResults () {
+    window.scrollTo(0, 0);
+
     // Extract search query from route parameters to fetch search results.
     const {query} = useParams();
+
     // Setting state.
     const [searchResults, setSearchResults] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
+    const [errorCode, setErrorCode] = useState(null);
+
     // Handels fetching search results.
     useEffect(() => {
+        setIsLoading(true);
         const fetchSearchResults = async () => {
             try {
                 const data = await getSearchResults(query);
                 const filteredData = data.results.filter(item => item.media_type !== "person");
                 setSearchResults(filteredData);
             } catch (error) {
-                console.log(error);
+                console.log(error.status, error.message);
+                setErrorCode(error.status);
+                setIsError(true);
+
+            } finally {
+                setIsLoading(false);
             }
         }
         
@@ -38,6 +53,12 @@ function SearchResults () {
     const handleFavoriteRemoved = () => {
         setFavorites(getFavorites());
     }
+
+    // Renders error message.
+    if (isError) return <ErrorMessage code={errorCode} />
+
+    // Renders loading animation.
+    if (isLoading) return <Loader message="Searching"/>
 
     //// Renders empty state message if no favorites exist.
     if (!searchResults || searchResults.length === 0) {
@@ -52,7 +73,7 @@ function SearchResults () {
 
     return (
         <div className="flex justify-center px-[4vw] py-16">
-            <div className="place-items-center gap-6 grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] w-full max-w-[2560px]">
+            <div className="place-items-center gap-6 grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] w-full max-w-[2560px] [animation:var(--animate-ease-to)]">
                 {searchResults.map((item) => {
                     if (!item) {
                         console.log("Error: Couldn't find item or category.")

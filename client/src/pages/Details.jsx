@@ -7,6 +7,7 @@ import DetailsSection from "../components/DetailsSection";
 import ImageCarousel from "../components/ImageCarousel";
 import Carousel from "../components/Carousel";
 import { clearSearchInput } from "../utils/clearSearchInput";
+import Loader from "../components/Loader";
 
 
 /**
@@ -23,32 +24,42 @@ import { clearSearchInput } from "../utils/clearSearchInput";
  * 
  */
 function Details() {
+    window.scrollTo(0, 0);
     // Extract category and id from route parameters to fetch details.
     const {category, id} = useParams();
 
     // Setting state.
     const [details, setDetails] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     
     // Handles fetchig details about the movie or show.
     useEffect(() => {
+        setIsLoading(true);
         const fetchDetails = async() => {
-            const response = await getDetails(category, id);
-            const formatted = formatDetails(response);
-            setDetails(formatted);
-            window.scrollTo(0, 0);
+            try {
+                const response = await getDetails(category, id);
+                const formatted = formatDetails(response);
+                setDetails(formatted);
+            } catch (error) {
+                console.log(`Error fetching ${category} details: `, error);
+                setIsLoading(false);
+                //Add error UI error message
+            } finally {
+                setIsLoading(false);
+            }
         }
+
         clearSearchInput(); 
         fetchDetails();
         
     },[category,id]);
 
-    const isLoading = details.length === 0;
-    if (isLoading) {
-        return <></>
-    }
+    // Renders loading animation.
+    if (isLoading) return <Loader message={"Loading details"}/>
+    
     
     return (
-        <div className="md:py-[1rem]">
+        <div className="py-[1rem]">
             <Header details={details} category={category} id={id}/>
 
             <DetailsSection details={details} category={category}/>
@@ -58,8 +69,7 @@ function Details() {
 
             { details.recommendations && details.recommendations.length > 0 && (
                 <Carousel label="Similar Titels" items={details.recommendations}/>
-            )}
-             
+            )}             
         </div>
     )
 }

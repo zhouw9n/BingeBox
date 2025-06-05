@@ -3,6 +3,7 @@ import { getFavorites } from "../services/favorites";
 import { getDetails } from "../services/api";
 import { clearSearchInput } from "../utils/clearSearchInput";
 import Card from "../components/Card";
+import Loader from "../components/Loader";
 
 /**
  * Favorites Page
@@ -17,9 +18,11 @@ import Card from "../components/Card";
  * - Card: A card of each movie or show in a grid layout.
  */
 function Favorites() {
+    window.scrollTo(0, 0);
     // Setting states.
     const [favorites, setFavorites] = useState(getFavorites());
     const [details, setDetails ] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     // Handles fetching details about the movie or show.
     useEffect(() => {
@@ -40,6 +43,7 @@ function Favorites() {
             const results = await Promise.all(promises);
             const combined = Object.assign([...results]);
             setDetails(combined);
+            setIsLoading(false);
         }
 
         clearSearchInput();
@@ -49,7 +53,11 @@ function Favorites() {
     // Callback, triggers when users removes a favorited item.
     const handleFavoriteRemoved = () => {
         setFavorites(getFavorites());
+        setIsLoading(true);
     }
+
+    // Renders loading animation.
+    if(isLoading) return <Loader message={"Loading favorites"}/>
 
     // Renders empty state message if no favorites exist.
     if (!favorites || favorites.length === 0) {
@@ -69,7 +77,7 @@ function Favorites() {
         <div className="flex justify-center px-[4vw] py-16">
 
             {/* === Card Grid === */}
-            <div className="place-items-center gap-6 grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] w-full max-w-[2560px]">
+            <div className="place-items-center gap-6 grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] w-full max-w-[2560px] [animation:var(--animate-ease-to)]">
             {details.map(({item, category, id}) => {
                 if (!item || !category) {
                     console.log("Error: Couldn't find item or category.")

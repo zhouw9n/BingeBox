@@ -15,7 +15,7 @@ import "../global.css"
  */
 function Carousel({label, items, type}) {
     return (
-        <section className="pt-16 pl-[4vw]">
+        <section className="pt-16 pl-[4vw] [animation:var(--animate-ease-to)]">
             <h1 className="text-bold md:text-[20px]">{label}</h1>
             <div className="flex gap-6 md:px-4 md:py-4 overflow-x-scroll scroll-smooth">
                 {items?.map((item, index) => (

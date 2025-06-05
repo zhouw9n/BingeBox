@@ -12,7 +12,7 @@ import "../global.css"
  * Props:
  * - details: An object containing formatted data (i.e.: duration, release date, genres, cast).
  * - category: Either "movie" or "tv" to conditionally render category-specific info.
- * - id: ID of the movie or show to handle favorite.
+ * - id: ID of the movie or show to handle favorites.
  * 
  * Handles:
  * - Add to or remove from favorites.
@@ -34,7 +34,7 @@ function Header({details, category, id}) {
             removeFromFavorites(id.toString(), category);
         } else {
             setFavorites(true);
-            addToFavorites(id.toString(), category, details.overview);
+            addToFavorites(id.toString(), category, details.description);
         }
     }
 
@@ -46,12 +46,12 @@ function Header({details, category, id}) {
                     ? `https://image.tmdb.org/t/p/w500/${details.posterUrl}`
                     : noPreviewImage} 
                 alt="Image" 
-                className="w-[300px] sm:w-[336px] lg:w-[500px] h-auto"
+                className="w-[300px] sm:w-[336px] lg:w-[500px] h-auto [animation:var(--animate-ease-to)]"
                 loading="lazy"
                 />
             
             {/* === Info === */}
-            <div className="flex flex-col md:justify-between py-4 w-[300px] sm:w-[336px] lg:w-[500px]">
+            <div className="flex flex-col md:justify-between py-4 w-[300px] sm:w-[336px] lg:w-[500px] [animation:var(--animate-float-in)]">
                 <h1 className="font-semibold text-[20px]">{details.title}</h1>
                 <p>{`(${details.releaseYear})`}</p>
                 <p className="pt-8 pb-2 overflow-hidden">{details.description}</p>

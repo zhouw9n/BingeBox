@@ -11,10 +11,10 @@
 function DetailsSection({details,category}) {
     return (
         <>
-            <div className="flex justify-center w-full">
+            <div className="flex justify-center w-full [animation:var(--animate-ease-to)]">
                 <h1 className="lg:mx-[1vw] xlg:mx-auto py-8 w-[300px] xs:w-[692px] sm:w-[336px] md:w-[720px] lg:w-[1020px] font-bold text-[20px]">Details</h1>
             </div>   
-            <div className="flex xs:flex-row flex-col sm:justify-between items-center xs:items-start sm:mx-auto lg:mx-[1vw] xlg:mx-auto w-full xs:w-[692px] md:w-[720px] lg:w-[1020px]">
+            <div className="flex xs:flex-row flex-col sm:justify-between items-center xs:items-start sm:mx-auto lg:mx-[1vw] xlg:mx-auto w-full xs:w-[692px] md:w-[720px] lg:w-[1020px] [animation:var(--animate-ease-to)]">
                 {/* === Section Left === */}
                 <section className="flex flex-col gap-6 w-[300px] sm:w-[336px] lg:w-[400px] whitespace-nowrap">
                     <div className="flex justify-between">
