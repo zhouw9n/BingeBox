@@ -6,6 +6,7 @@ import Favorites from "./pages/Favorites";
 import Details from "./pages/Details";
 import NotFound from "./pages/NotFound";
 import SearchResults from "./pages/SearchResults";
+import Footer from "./components/Footer";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <Footer />
     </>
   )
 }
