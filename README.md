@@ -6,9 +6,9 @@ and get detailed information. With AI integration, BingeBox also offers **person
 🌐 **Live Demo**: [https://zhouw9n.github.io/BingeBox/](https://zhouw9n.github.io/BingeBox/)
 
 > ⚠️ **Note**: The backend server is hosted on Render’s free tier and may take **30–60 seconds to spin up** if inactive. Thank you for your patience!
->
-> ---
->
+
+---
+
 > ## ✨ Features
 
 - Display trending movies and TV shows
@@ -24,7 +24,7 @@ and get detailed information. With AI integration, BingeBox also offers **person
 
 ---
 
-## 🤖 AI Integration
+> ## 🤖 AI Integration
 
 BingeBox uses **Datastax AstraDB**'s vector capabilities to provide **personalized recommendations**:
 
@@ -35,7 +35,7 @@ BingeBox uses **Datastax AstraDB**'s vector capabilities to provide **personaliz
 
 - ---
 
-## 🛠️ Tech Stack
+> ## 🛠️ Tech Stack
 
 ### Frontend
 
@@ -58,35 +58,46 @@ BingeBox uses **Datastax AstraDB**'s vector capabilities to provide **personaliz
 
 ---
 
-## 📁 Project Structur
+> ## 📁 Project Structur
 
-BingeBox/
-├── client/
-│   ├── dist/                  # Build output
-│   ├── node_modules/          # Project dependencies
-│   ├── public/                # Public assets (favicon, etc.)
-│   ├── src/                   # Source code
-│   │    ├── assets/           
-│   │    │   ├── fonts/         # Custom fonts
-│   │    │   ├── icons/         # Favicons and SVGs
-│   │    │   └── images/        # Image assets
-│   │    ├── components/        # Reusable components (Header, Footer, etc.)
-│   │    ├── constants/         # Static config (e.g., genre mapping)
-│   │    ├── pages/             # Main route components (Home, Movies, Shows, etc.)
-│   │    ├── services/          # API service handlers (e.g., TMDB, favorites)
-│   │    ├── utils/             # Utility functions (vector query builder, etc.)
-│   │    ├── App.jsx            # Root app component
-│   │    ├── main.jsx           # App entry point
-│   │    ├── global.css         # Global styles
-│   ├── .gitignore
-│   ├── index.html              # HTML entry point
-│   ├── package.json            # Frontend dependencies and scripts      
-│   └── vite.config.js          # vite.config.js
-│
-└── server/                      # Backend Express server
-    ├── node_modules/            # Backend dependencies
-    ├── server.js                # Entry point for Express server                  
-    └── package.json             # Backend dependencies and scripts
+![Capture](https://github.com/user-attachments/assets/b90a4766-81fd-4311-b356-08bdb61df1d4)
 
 ---
+
+> ## 📸 Screenshots
+
+### Home Page
+
+![Capture](https://github.com/user-attachments/assets/62d42f34-6a03-4ce2-8e25-0ec4774d2aa6)
+
+### Movies Page
+
+![Capture](https://github.com/user-attachments/assets/ac3dd538-7b51-4f4a-804c-1a9cf609e296)
+
+### Shows Page
+
+![Capture](https://github.com/user-attachments/assets/4e474a3e-16ea-4d88-b4b8-d2c4fc379778)
+
+### Favorites Page
+
+![Capture](https://github.com/user-attachments/assets/2205834a-5007-464e-82ba-70fcd11cd9e3)
+
+### Details Page
+
+![Capture](https://github.com/user-attachments/assets/529210ff-bbac-4ae0-b51f-7e79e41a3230)
+![Capture](https://github.com/user-attachments/assets/dd6167eb-aa31-4d9b-9d83-01da0b51ca61)
+
+### Search Results Page
+
+![Capture](https://github.com/user-attachments/assets/808bf8e1-12a6-47e6-abcc-3c87149cd944)
+
+### Mobile Devices
+![Capture](https://github.com/user-attachments/assets/2b09484b-3b93-4155-8329-f1acc0317e41)
+![Capture](https://github.com/user-attachments/assets/57898648-36c7-4298-a05c-e7fcd375d1ce)
+![Capture](https://github.com/user-attachments/assets/20f59303-4f52-421d-86f1-ddcde0d9a82a)
+
+---
+
+
+
 
