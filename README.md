@@ -36,6 +36,8 @@ BingeBox uses **Datastax AstraDB**'s vector capabilities to provide **personaliz
 
 > ## 🛠️ Tech Stack
 
+This project emphasizes reusable components and a clean UI using React and TailwindCSS.
+
 ### Frontend
 
 - JavaScript / HTML / CSS
@@ -44,6 +46,8 @@ BingeBox uses **Datastax AstraDB**'s vector capabilities to provide **personaliz
 - [Vite](https://vitejs.dev/)
 
 ### Backend
+
+The backend is a lightweight server handling API requests securely, including API key management.
 
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
