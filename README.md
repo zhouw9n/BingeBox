@@ -1,9 +1,8 @@
 # 🎬 BingeBox
 
-**BingeBox** is a personal project to showcase my skills as a frontend developer. It provides a sleek and interactive platform to explore trending movies and TV shows, search for titles, mark favorites, 
-and get detailed information. With AI integration, BingeBox also offers **personalized recommendations** based on your favorite content.
+**BingeBox** is a personal project to showcase my skills as a frontend developer. It provides a sleek and interactive platform to explore trending movies and TV shows, search for titles, mark favorites, and get detailed information. With AI integration, BingeBox also offers **personalized recommendations** based on your favorite content.
 
-🌐 **Live Demo**: [https://zhouw9n.github.io/BingeBox/](https://zhouw9n.github.io/BingeBox/)
+🌐 **Live Demo**: [BingeBox](https://zhouw9n.github.io/BingeBox/)
 
 > ⚠️ **Note**: The backend server is hosted on Render’s free tier and may take **30–60 seconds to spin up** if inactive. Thank you for your patience!
 
@@ -11,16 +10,16 @@ and get detailed information. With AI integration, BingeBox also offers **person
 
 > ## ✨ Features
 
-- Display trending movies and TV shows
-- Show upcoming movie releases
-- Personalized recommendations based on favorites
-- Browse content by genre (Movies & TV Shows)
-- Save and view favorites (stored in `localStorage`)
-- Search for movies and TV shows by title
-- Detailed information view for each movie/show
-- Sleek and modern UI
-- Responsiveness across all major devices and screen sizes
-- Error handling and UI states (error message, loading animation)
+- Displays trending movies and TV shows
+- Shows upcoming movie releases
+- Provides personalized recommendations based on favorites
+- Allows browsing content by genre (Movies & TV Shows)
+- Saves and views favorites (stored in `localStorage`)
+- Enables search for movies and TV shows by title
+- Shows detailed information for each movie/show
+- Features a sleek and modern UI
+- Fully responsive across all major devices and screen sizes
+- Handles errors and provides proper UI states (e.g., error messages, loading animations)
 
 ---
 
@@ -53,12 +52,12 @@ BingeBox uses **Datastax AstraDB**'s vector capabilities to provide **personaliz
 
 ### APIs Used
 
-- [TMDB API](https://www.themoviedb.org/documentation/api) - for movie and tv show data
+- [TMDB API](https://www.themoviedb.org/documentation/api) - for movie and TV show data
 - [AstraDB Vector Search API](https://docs.datastax.com/en/astra/) - for vector search
 
 ---
 
-> ## 📁 Project Structur
+> ## 📁 Project Structure
 
 ![Capture](https://github.com/user-attachments/assets/b90a4766-81fd-4311-b356-08bdb61df1d4)
 
@@ -93,11 +92,7 @@ BingeBox uses **Datastax AstraDB**'s vector capabilities to provide **personaliz
 
 ### Mobile Devices
 ![Capture](https://github.com/user-attachments/assets/2b09484b-3b93-4155-8329-f1acc0317e41)
+
 ![Capture](https://github.com/user-attachments/assets/57898648-36c7-4298-a05c-e7fcd375d1ce)
+
 ![Capture](https://github.com/user-attachments/assets/20f59303-4f52-421d-86f1-ddcde0d9a82a)
-
----
-
-
-
-
