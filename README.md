@@ -30,7 +30,7 @@ BingeBox uses **Datastax AstraDB**'s vector capabilities to provide **personaliz
 - The last **5 favorite** movies/TV shows are used to build a sample query string.
 - Each description is truncated to **100 characters** and combined into a single query (max 512 characters).
 - This query is **vectorized** via AstraDB's API.
-- The database (based on ~18,000 scraped titles) returns results using **cosine similarity** for recommendation.
+- The database (based on ~18,000 scraped titles from TMDB) returns results using **cosine similarity** for recommendation.
 
 ---
 
