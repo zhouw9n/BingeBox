@@ -33,7 +33,7 @@ BingeBox uses **Datastax AstraDB**'s vector capabilities to provide **personaliz
 - This query is **vectorized** via AstraDB's API.
 - The database (based on ~18,000 scraped titles) returns results using **cosine similarity** for recommendation.
 
-- ---
+---
 
 > ## 🛠️ Tech Stack
 
@@ -53,8 +53,8 @@ BingeBox uses **Datastax AstraDB**'s vector capabilities to provide **personaliz
 
 ### APIs Used
 
-- [TMDB API](https://www.themoviedb.org/documentation/api)
-- [AstraDB Vector Search API](https://docs.datastax.com/en/astra/)
+- [TMDB API](https://www.themoviedb.org/documentation/api) - for movie and tv show data
+- [AstraDB Vector Search API](https://docs.datastax.com/en/astra/) - for vector search
 
 ---
 
