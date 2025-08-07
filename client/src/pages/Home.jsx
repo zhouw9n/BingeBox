@@ -121,7 +121,7 @@ function Home() {
     }, []);
     
     // Renders error message.
-    if ( !isTrendingLoading && trendingList.length === 0) return <ErrorMessage code={""}/>
+    if (trendingList.length > 0 && upcomingMoviesList.length === 0) return <ErrorMessage code={""}/>
 
     // Renders loading animation.
     if (isTrendingLoading || isUpcomingLoading || isRecsLoading) return <Loader message={"Binge mode loading"}/>
@@ -130,13 +130,10 @@ function Home() {
     return (
         <>
         {userRecommendations.length > 0 && (
-            <Carousel label="Based on your favorites" items={userRecommendations}/>
+             <Carousel label="Based on your favorites" items={userRecommendations}/>
         )} 
         <Carousel label="Trending" items={trendingList}/>
-        {upcomingMoviesList.length > 0 && (
-            <Carousel label="Upcoming Movies" items={upcomingMoviesList} type="movie"/>
-        )}
-        
+        <Carousel label="Upcoming Movies" items={upcomingMoviesList} type="movie"/>
         </>
     )
 }
